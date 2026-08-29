@@ -1,0 +1,26 @@
+# cloud-config.yaml
+# Su objetivo principal es automatizar la preparacion inicial
+# de la maquina virtual que actuara como nodo controlador.
+
+# Definicion del nombre del host,
+# como va actuar como nodo controlador de OpenStack
+# pues le asignamos "controlador"
+hostname: controlador
+
+# Definicion de los usuarios que se crearan
+users:
+  # Definicion del usuario admin (con nombre stack)
+  - name: stack
+
+    # Inicio de sesion con clave publica, sin password
+    ssh_pwauth: false
+
+    # Definicion de la clave publica
+    ssh_authorized_keys:
+      - X    
+    # Permitir la ejecucion de comandos como root sin password
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+    shell: /bin/bash
+    
+    homedir: /opt/stack
