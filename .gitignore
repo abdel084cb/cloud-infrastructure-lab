@@ -1,18 +1,32 @@
-# OpenTofu / Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
 *.tfvars.json
+crash.log
+crash.*.log
 
-# VM images
 *.qcow2
 *.img
 *.iso
 
-# Secrets
+**/k3s
+**/kubectl
+
+k3s.yaml
+kubeconfig
+.kube/
+
+**/--help/
+**/--version/
+
+*.tar.gz
+*.tar.xz
+
 .env
 .env.*
 *.pem
 id_rsa
 id_rsa.*
+
+*.log
