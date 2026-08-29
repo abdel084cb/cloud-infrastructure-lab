@@ -1,0 +1,24 @@
+# cloud-config
+# Esta configuracion inicializa un nodo worker para un cluster de Kubernetes
+
+# Nota: El hostname (worker1, worker2, worker3) sera configurado en OpenTofu
+
+# Gestion de usuarios
+users:
+  - name: ubuntu
+    ssh_pwauth: false # Deshabilitar la autenticacion por password SSH
+    ssh_authorized_keys:
+      - X
+    sudo: ['ALL=(ALL) NOPASSWD:ALL'] # Otorga privilegios sudo sin password
+    shell: /bin/bash
+
+# Configurar /etc/hosts con los 4 nodos
+write_files:
+  - path: /etc/hosts
+    permissions: '0644'
+    content: |
+      127.0.0.1 localhost
+      192.168.13.6 master
+      192.168.13.7 worker1
+      192.168.13.8 worker2
+      192.168.13.9 worker3
