@@ -1,0 +1,20 @@
+# cloud-config.yaml (computenode)
+# Este fichero define la configuracion automatizada que se aplicara al arrancar la VM computenode.
+# Configura usuarios, claves SSH, hostname, permisos sudo, y otras opciones.
+
+# Nombre de host del nodo.
+hostname: computenode
+
+# Definicion de usuarios.
+users:
+  - name: stack
+    # SSH (solo claves)
+    ssh_pwauth: false                   
+    ssh_authorized_keys:
+      - X
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']   
+    shell: /bin/bash                   
+    homedir: /opt/stack                
+
+# Este fichero sera empaquetado en el disco ISO generado mediante cloud-init
+# y montado en la maquina virtual en su primer arranque por Opentofu.
